@@ -3,13 +3,13 @@
 SCRIPT="$0"
 echo "# START SCRIPT: $SCRIPT"
 
-executable="./../openapi-generator-cli.jar"
+executable="./openapi-generator-cli.jar"
 
 PACKAGE_NAME="blackapi"
 SPEC="./black_spec.yaml"
 GENERATOR="go-experimental"
 #GENERATOR="go"
-STUB_DIR="./../blackapi"
+STUB_DIR="./.."
 USER_AGENT="Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1"
 
 #echo "Removing files and folders under $STUB_DIR"
