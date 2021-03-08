@@ -105,7 +105,7 @@ func NewConfiguration() *Configuration {
 		Debug:            false,
 		Servers:          ServerConfigurations{
 			{
-				URL: "https://black.betinasia.com",
+				URL: "",
 				Description: "No description provided",
 			},
 		},

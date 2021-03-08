@@ -1,6 +1,6 @@
 # \BetApi
 
-All URIs are relative to *https://black.betinasia.com*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

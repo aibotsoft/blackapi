@@ -2,8 +2,8 @@ openapi: 3.0.1
 info:
   title: Black API
   version: 1.0.0
-servers:
-  - url: 'https://black.betinasia.com'
+#servers:
+#  - url: 'https://black.betinasia.com'
 security:
   - session: []
 paths:
