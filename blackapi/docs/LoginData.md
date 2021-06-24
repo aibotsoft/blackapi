@@ -9,12 +9,13 @@ Name | Type | Description | Notes
 **CustomerId** | Pointer to **int64** |  | [optional] 
 **Lang** | Pointer to **string** |  | [optional] 
 **SessionId** | Pointer to **string** |  | [optional] 
+**BookieAccounts** | [**[]BookieData**](BookieData.md) |  | 
 
 ## Methods
 
 ### NewLoginData
 
-`func NewLoginData() *LoginData`
+`func NewLoginData(bookieAccounts []BookieData, ) *LoginData`
 
 NewLoginData instantiates a new LoginData object
 This constructor will assign default values to properties that have it defined,
@@ -153,6 +154,26 @@ SetSessionId sets SessionId field to given value.
 `func (o *LoginData) HasSessionId() bool`
 
 HasSessionId returns a boolean if a field has been set.
+
+### GetBookieAccounts
+
+`func (o *LoginData) GetBookieAccounts() []BookieData`
+
+GetBookieAccounts returns the BookieAccounts field if non-nil, zero value otherwise.
+
+### GetBookieAccountsOk
+
+`func (o *LoginData) GetBookieAccountsOk() (*[]BookieData, bool)`
+
+GetBookieAccountsOk returns a tuple with the BookieAccounts field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBookieAccounts
+
+`func (o *LoginData) SetBookieAccounts(v []BookieData)`
+
+SetBookieAccounts sets BookieAccounts field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

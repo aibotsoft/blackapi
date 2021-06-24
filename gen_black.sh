@@ -9,7 +9,6 @@ SPEC="spec.yaml"
 OUT_DIR="$PACKAGE_NAME"
 GIT_USER_ID=aibotsoft
 GIT_REPO_ID=blackapi
-export GO_POST_PROCESS_FILE="/c/Go/bin/gofmt.exe -w"
 
 #echo "Removing files and folders under $STUB_DIR"
 #rm -rf $STUB_DIR/{*.go,*.sh,*.md,*.mod,*.sum}

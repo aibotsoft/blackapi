@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**BetList**](BetApi.md#BetList) | **Get** /v1/orders/ | 
 [**BetLog**](BetApi.md#BetLog) | **Get** /v1/orders/{order_id}/log/ | 
 [**BetSlip**](BetApi.md#BetSlip) | **Post** /v1/betslips/ | 
+[**DeleteBetSlip**](BetApi.md#DeleteBetSlip) | **Delete** /v1/betslips/{betslip_id}/ | 
 [**PlaceBet**](BetApi.md#PlaceBet) | **Post** /v1/orders/ | 
 [**RefreshBetSlip**](BetApi.md#RefreshBetSlip) | **Post** /v1/betslips/{betslip_id}/refresh/ | 
 
@@ -282,6 +283,74 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteBetSlip
+
+> DeleteBetSlipResponse DeleteBetSlip(ctx, betslipId).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    betslipId := "betslipId_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.BetApi.DeleteBetSlip(context.Background(), betslipId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BetApi.DeleteBetSlip``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteBetSlip`: DeleteBetSlipResponse
+    fmt.Fprintf(os.Stdout, "Response from `BetApi.DeleteBetSlip`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**betslipId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteBetSlipRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**DeleteBetSlipResponse**](DeleteBetSlipResponse.md)
+
+### Authorization
+
+[session](../README.md#session)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

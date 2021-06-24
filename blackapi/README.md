@@ -82,6 +82,7 @@ Class | Method | HTTP request | Description
 *BetApi* | [**BetList**](docs/BetApi.md#betlist) | **Get** /v1/orders/ | 
 *BetApi* | [**BetLog**](docs/BetApi.md#betlog) | **Get** /v1/orders/{order_id}/log/ | 
 *BetApi* | [**BetSlip**](docs/BetApi.md#betslip) | **Post** /v1/betslips/ | 
+*BetApi* | [**DeleteBetSlip**](docs/BetApi.md#deletebetslip) | **Delete** /v1/betslips/{betslip_id}/ | 
 *BetApi* | [**PlaceBet**](docs/BetApi.md#placebet) | **Post** /v1/orders/ | 
 *BetApi* | [**RefreshBetSlip**](docs/BetApi.md#refreshbetslip) | **Post** /v1/betslips/{betslip_id}/refresh/ | 
 *MarketApi* | [**GetEvents**](docs/MarketApi.md#getevents) | **Post** /s/prices/eventdata1/ | 
@@ -104,6 +105,8 @@ Class | Method | HTTP request | Description
  - [BetSlipData](docs/BetSlipData.md)
  - [BetSlipRequest](docs/BetSlipRequest.md)
  - [BetSlipResponse](docs/BetSlipResponse.md)
+ - [BookieData](docs/BookieData.md)
+ - [DeleteBetSlipResponse](docs/DeleteBetSlipResponse.md)
  - [ErrorData](docs/ErrorData.md)
  - [Event](docs/Event.md)
  - [EventInfo](docs/EventInfo.md)

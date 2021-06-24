@@ -192,6 +192,26 @@ paths:
           description: Ok
       tags:
       - Bet
+  /v1/betslips/{betslip_id}/:
+    delete:
+      operationId: DeleteBetSlip
+      parameters:
+      - explode: false
+        in: path
+        name: betslip_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteBetSlipResponse'
+          description: Ok
+      tags:
+      - Bet
   /s/prices/eventdata1/:
     post:
       operationId: GetEvents
@@ -3288,6 +3308,34 @@ components:
           type: string
         session_id:
           type: string
+        bookie_accounts:
+          items:
+            $ref: '#/components/schemas/BookieData'
+          type: array
+      required:
+      - bookie_accounts
+      type: object
+    BookieData:
+      properties:
+        bookie:
+          type: string
+        ccy_code:
+          type: string
+        enabled:
+          type: boolean
+        id:
+          type: integer
+        price_scheme:
+          type: string
+        username:
+          type: string
+      required:
+      - bookie
+      - ccy_code
+      - enabled
+      - id
+      - price_scheme
+      - username
       type: object
     GetEventsRequest:
       example:
@@ -4104,6 +4152,18 @@ components:
           type: string
       required:
       - code
+      - status
+      type: object
+    DeleteBetSlipResponse:
+      example:
+        data: null
+        status: ok
+      properties:
+        data:
+          type: string
+        status:
+          type: string
+      required:
       - status
       type: object
     BetItem_status:

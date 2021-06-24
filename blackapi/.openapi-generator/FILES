@@ -20,6 +20,8 @@ docs/BetLogResponse.md
 docs/BetSlipData.md
 docs/BetSlipRequest.md
 docs/BetSlipResponse.md
+docs/BookieData.md
+docs/DeleteBetSlipResponse.md
 docs/ErrorData.md
 docs/Event.md
 docs/EventInfo.md
@@ -53,6 +55,8 @@ model_bet_log_response.go
 model_bet_slip_data.go
 model_bet_slip_request.go
 model_bet_slip_response.go
+model_bookie_data.go
+model_delete_bet_slip_response.go
 model_error_data.go
 model_event.go
 model_event_info.go

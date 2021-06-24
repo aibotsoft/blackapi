@@ -21,6 +21,7 @@ type LoginData struct {
 	CustomerId *int64 `json:"customer_id,omitempty"`
 	Lang *string `json:"lang,omitempty"`
 	SessionId *string `json:"session_id,omitempty"`
+	BookieAccounts []BookieData `json:"bookie_accounts"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -30,8 +31,9 @@ type _LoginData LoginData
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLoginData() *LoginData {
+func NewLoginData(bookieAccounts []BookieData, ) *LoginData {
 	this := LoginData{}
+	this.BookieAccounts = bookieAccounts
 	return &this
 }
 
@@ -203,6 +205,30 @@ func (o *LoginData) SetSessionId(v string) {
 	o.SessionId = &v
 }
 
+// GetBookieAccounts returns the BookieAccounts field value
+func (o *LoginData) GetBookieAccounts() []BookieData {
+	if o == nil  {
+		var ret []BookieData
+		return ret
+	}
+
+	return o.BookieAccounts
+}
+
+// GetBookieAccountsOk returns a tuple with the BookieAccounts field value
+// and a boolean to check if the value has been set.
+func (o *LoginData) GetBookieAccountsOk() (*[]BookieData, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.BookieAccounts, true
+}
+
+// SetBookieAccounts sets field value
+func (o *LoginData) SetBookieAccounts(v []BookieData) {
+	o.BookieAccounts = v
+}
+
 func (o LoginData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Whitelabel != nil {
@@ -219,6 +245,9 @@ func (o LoginData) MarshalJSON() ([]byte, error) {
 	}
 	if o.SessionId != nil {
 		toSerialize["session_id"] = o.SessionId
+	}
+	if true {
+		toSerialize["bookie_accounts"] = o.BookieAccounts
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -243,6 +272,7 @@ func (o *LoginData) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "customer_id")
 		delete(additionalProperties, "lang")
 		delete(additionalProperties, "session_id")
+		delete(additionalProperties, "bookie_accounts")
 		o.AdditionalProperties = additionalProperties
 	}
 
