@@ -22,10 +22,7 @@ type BookieData struct {
 	Id int64 `json:"id"`
 	PriceScheme string `json:"price_scheme"`
 	Username string `json:"username"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _BookieData BookieData
 
 // NewBookieData instantiates a new BookieData object
 // This constructor will assign default values to properties that have it defined,
@@ -214,34 +211,7 @@ func (o BookieData) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["username"] = o.Username
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *BookieData) UnmarshalJSON(bytes []byte) (err error) {
-	varBookieData := _BookieData{}
-
-	if err = json.Unmarshal(bytes, &varBookieData); err == nil {
-		*o = BookieData(varBookieData)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "bookie")
-		delete(additionalProperties, "ccy_code")
-		delete(additionalProperties, "enabled")
-		delete(additionalProperties, "id")
-		delete(additionalProperties, "price_scheme")
-		delete(additionalProperties, "username")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableBookieData struct {

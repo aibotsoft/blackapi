@@ -26,10 +26,7 @@ type WebsocketResponse struct {
 	Min float64 `json:"min"`
 	Max float64 `json:"max"`
 	Status string `json:"status"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _WebsocketResponse WebsocketResponse
 
 // NewWebsocketResponse instantiates a new WebsocketResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -330,38 +327,7 @@ func (o WebsocketResponse) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["status"] = o.Status
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *WebsocketResponse) UnmarshalJSON(bytes []byte) (err error) {
-	varWebsocketResponse := _WebsocketResponse{}
-
-	if err = json.Unmarshal(bytes, &varWebsocketResponse); err == nil {
-		*o = WebsocketResponse(varWebsocketResponse)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "betslip_id")
-		delete(additionalProperties, "sport")
-		delete(additionalProperties, "event_id")
-		delete(additionalProperties, "bookie")
-		delete(additionalProperties, "username")
-		delete(additionalProperties, "bet_type")
-		delete(additionalProperties, "price")
-		delete(additionalProperties, "min")
-		delete(additionalProperties, "max")
-		delete(additionalProperties, "status")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableWebsocketResponse struct {

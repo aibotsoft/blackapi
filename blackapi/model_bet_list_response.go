@@ -18,10 +18,7 @@ import (
 type BetListResponse struct {
 	Status string `json:"status"`
 	Data []OrderItem `json:"data"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _BetListResponse BetListResponse
 
 // NewBetListResponse instantiates a new BetListResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -98,30 +95,7 @@ func (o BetListResponse) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["data"] = o.Data
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *BetListResponse) UnmarshalJSON(bytes []byte) (err error) {
-	varBetListResponse := _BetListResponse{}
-
-	if err = json.Unmarshal(bytes, &varBetListResponse); err == nil {
-		*o = BetListResponse(varBetListResponse)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "status")
-		delete(additionalProperties, "data")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableBetListResponse struct {

@@ -22,10 +22,7 @@ type LoginData struct {
 	Lang *string `json:"lang,omitempty"`
 	SessionId *string `json:"session_id,omitempty"`
 	BookieAccounts []BookieData `json:"bookie_accounts"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _LoginData LoginData
 
 // NewLoginData instantiates a new LoginData object
 // This constructor will assign default values to properties that have it defined,
@@ -249,34 +246,7 @@ func (o LoginData) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["bookie_accounts"] = o.BookieAccounts
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *LoginData) UnmarshalJSON(bytes []byte) (err error) {
-	varLoginData := _LoginData{}
-
-	if err = json.Unmarshal(bytes, &varLoginData); err == nil {
-		*o = LoginData(varLoginData)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "whitelabel")
-		delete(additionalProperties, "username")
-		delete(additionalProperties, "customer_id")
-		delete(additionalProperties, "lang")
-		delete(additionalProperties, "session_id")
-		delete(additionalProperties, "bookie_accounts")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableLoginData struct {

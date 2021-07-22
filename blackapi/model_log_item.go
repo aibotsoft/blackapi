@@ -20,10 +20,7 @@ type LogItem struct {
 	Timestamp *time.Time `json:"timestamp,omitempty"`
 	Message *string `json:"message,omitempty"`
 	Category *string `json:"category,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _LogItem LogItem
 
 // NewLogItem instantiates a new LogItem object
 // This constructor will assign default values to properties that have it defined,
@@ -149,31 +146,7 @@ func (o LogItem) MarshalJSON() ([]byte, error) {
 	if o.Category != nil {
 		toSerialize["category"] = o.Category
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *LogItem) UnmarshalJSON(bytes []byte) (err error) {
-	varLogItem := _LogItem{}
-
-	if err = json.Unmarshal(bytes, &varLogItem); err == nil {
-		*o = LogItem(varLogItem)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "timestamp")
-		delete(additionalProperties, "message")
-		delete(additionalProperties, "category")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableLogItem struct {

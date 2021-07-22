@@ -17,10 +17,7 @@ import (
 // BetItemStatus struct for BetItemStatus
 type BetItemStatus struct {
 	Code *string `json:"code,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _BetItemStatus BetItemStatus
 
 // NewBetItemStatus instantiates a new BetItemStatus object
 // This constructor will assign default values to properties that have it defined,
@@ -76,29 +73,7 @@ func (o BetItemStatus) MarshalJSON() ([]byte, error) {
 	if o.Code != nil {
 		toSerialize["code"] = o.Code
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *BetItemStatus) UnmarshalJSON(bytes []byte) (err error) {
-	varBetItemStatus := _BetItemStatus{}
-
-	if err = json.Unmarshal(bytes, &varBetItemStatus); err == nil {
-		*o = BetItemStatus(varBetItemStatus)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "code")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableBetItemStatus struct {

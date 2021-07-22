@@ -18,22 +18,17 @@ import (
 type LoginRequest struct {
 	Username string `json:"username"`
 	Password string `json:"password"`
-	Full bool `json:"full"`
 	Lang string `json:"lang"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _LoginRequest LoginRequest
 
 // NewLoginRequest instantiates a new LoginRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLoginRequest(username string, password string, full bool, lang string, ) *LoginRequest {
+func NewLoginRequest(username string, password string, lang string, ) *LoginRequest {
 	this := LoginRequest{}
 	this.Username = username
 	this.Password = password
-	this.Full = full
 	this.Lang = lang
 	return &this
 }
@@ -43,8 +38,6 @@ func NewLoginRequest(username string, password string, full bool, lang string, )
 // but it doesn't guarantee that properties required by API are set
 func NewLoginRequestWithDefaults() *LoginRequest {
 	this := LoginRequest{}
-	var full bool = true
-	this.Full = full
 	var lang string = "en"
 	this.Lang = lang
 	return &this
@@ -98,30 +91,6 @@ func (o *LoginRequest) SetPassword(v string) {
 	o.Password = v
 }
 
-// GetFull returns the Full field value
-func (o *LoginRequest) GetFull() bool {
-	if o == nil  {
-		var ret bool
-		return ret
-	}
-
-	return o.Full
-}
-
-// GetFullOk returns a tuple with the Full field value
-// and a boolean to check if the value has been set.
-func (o *LoginRequest) GetFullOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Full, true
-}
-
-// SetFull sets field value
-func (o *LoginRequest) SetFull(v bool) {
-	o.Full = v
-}
-
 // GetLang returns the Lang field value
 func (o *LoginRequest) GetLang() string {
 	if o == nil  {
@@ -155,37 +124,9 @@ func (o LoginRequest) MarshalJSON() ([]byte, error) {
 		toSerialize["password"] = o.Password
 	}
 	if true {
-		toSerialize["full"] = o.Full
-	}
-	if true {
 		toSerialize["lang"] = o.Lang
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *LoginRequest) UnmarshalJSON(bytes []byte) (err error) {
-	varLoginRequest := _LoginRequest{}
-
-	if err = json.Unmarshal(bytes, &varLoginRequest); err == nil {
-		*o = LoginRequest(varLoginRequest)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "username")
-		delete(additionalProperties, "password")
-		delete(additionalProperties, "full")
-		delete(additionalProperties, "lang")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableLoginRequest struct {

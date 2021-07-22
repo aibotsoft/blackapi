@@ -20,10 +20,7 @@ type BalanceItem struct {
 	Label string `json:"label"`
 	Value float64 `json:"value"`
 	Unit string `json:"unit"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _BalanceItem BalanceItem
 
 // NewBalanceItem instantiates a new BalanceItem object
 // This constructor will assign default values to properties that have it defined,
@@ -156,32 +153,7 @@ func (o BalanceItem) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["unit"] = o.Unit
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *BalanceItem) UnmarshalJSON(bytes []byte) (err error) {
-	varBalanceItem := _BalanceItem{}
-
-	if err = json.Unmarshal(bytes, &varBalanceItem); err == nil {
-		*o = BalanceItem(varBalanceItem)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "key")
-		delete(additionalProperties, "label")
-		delete(additionalProperties, "value")
-		delete(additionalProperties, "unit")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableBalanceItem struct {

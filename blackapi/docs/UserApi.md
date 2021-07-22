@@ -5,8 +5,8 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**Balance**](UserApi.md#Balance) | **Get** /v1/customers/{username}/accounting_info/ | 
-[**CheckLogin**](UserApi.md#CheckLogin) | **Get** /s/weblogin/{session}/ | 
-[**Login**](UserApi.md#Login) | **Post** /s/weblogin/ | 
+[**CheckLogin**](UserApi.md#CheckLogin) | **Get** /web/sessions/{session}/ | 
+[**Login**](UserApi.md#Login) | **Post** /web/sessions/ | 
 
 
 
@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 
 ## CheckLogin
 
-> LoginResponse CheckLogin(ctx, session).Full(full).Execute()
+> LoginResponse CheckLogin(ctx, session).Execute()
 
 
 
@@ -98,11 +98,10 @@ import (
 
 func main() {
     session := "session_example" // string | 
-    full := true // bool |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UserApi.CheckLogin(context.Background(), session).Full(full).Execute()
+    resp, r, err := api_client.UserApi.CheckLogin(context.Background(), session).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UserApi.CheckLogin``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -128,7 +127,6 @@ Other parameters are passed through a pointer to a apiCheckLoginRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **full** | **bool** |  | 
 
 ### Return type
 
@@ -167,7 +165,7 @@ import (
 )
 
 func main() {
-    loginRequest := *openapiclient.NewLoginRequest("Username_example", "Password_example", false, "Lang_example") // LoginRequest | 
+    loginRequest := *openapiclient.NewLoginRequest("Username_example", "Password_example", "Lang_example") // LoginRequest | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)

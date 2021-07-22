@@ -25,10 +25,7 @@ type PlaceBetRequest struct {
 	RequestUuid string `json:"request_uuid"`
 	Duration int64 `json:"duration"`
 	Accounts *[][]string `json:"accounts,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _PlaceBetRequest PlaceBetRequest
 
 // NewPlaceBetRequest instantiates a new PlaceBetRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -315,37 +312,7 @@ func (o PlaceBetRequest) MarshalJSON() ([]byte, error) {
 	if o.Accounts != nil {
 		toSerialize["accounts"] = o.Accounts
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *PlaceBetRequest) UnmarshalJSON(bytes []byte) (err error) {
-	varPlaceBetRequest := _PlaceBetRequest{}
-
-	if err = json.Unmarshal(bytes, &varPlaceBetRequest); err == nil {
-		*o = PlaceBetRequest(varPlaceBetRequest)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "betslip_id")
-		delete(additionalProperties, "price")
-		delete(additionalProperties, "stake")
-		delete(additionalProperties, "ignore_system_maintenance")
-		delete(additionalProperties, "no_put_offer_exchange")
-		delete(additionalProperties, "adaptive_bookies")
-		delete(additionalProperties, "request_uuid")
-		delete(additionalProperties, "duration")
-		delete(additionalProperties, "accounts")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullablePlaceBetRequest struct {

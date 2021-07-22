@@ -6,14 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Username** | **string** |  | 
 **Password** | **string** |  | 
-**Full** | **bool** |  | [default to true]
 **Lang** | **string** |  | [default to "en"]
 
 ## Methods
 
 ### NewLoginRequest
 
-`func NewLoginRequest(username string, password string, full bool, lang string, ) *LoginRequest`
+`func NewLoginRequest(username string, password string, lang string, ) *LoginRequest`
 
 NewLoginRequest instantiates a new LoginRequest object
 This constructor will assign default values to properties that have it defined,
@@ -66,26 +65,6 @@ and a boolean to check if the value has been set.
 `func (o *LoginRequest) SetPassword(v string)`
 
 SetPassword sets Password field to given value.
-
-
-### GetFull
-
-`func (o *LoginRequest) GetFull() bool`
-
-GetFull returns the Full field if non-nil, zero value otherwise.
-
-### GetFullOk
-
-`func (o *LoginRequest) GetFullOk() (*bool, bool)`
-
-GetFullOk returns a tuple with the Full field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFull
-
-`func (o *LoginRequest) SetFull(v bool)`
-
-SetFull sets Full field to given value.
 
 
 ### GetLang

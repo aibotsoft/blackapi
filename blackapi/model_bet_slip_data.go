@@ -27,17 +27,14 @@ type BetSlipData struct {
 	IsOpen *bool `json:"is_open,omitempty"`
 	ExpiryTs float64 `json:"expiry_ts"`
 	BookiesWithOffers *[]string `json:"bookies_with_offers,omitempty"`
+	WantBookies *[]string `json:"want_bookies,omitempty"`
 	EquivalentBetsBookies *[]string `json:"equivalent_bets_bookies,omitempty"`
 	CloseReason *string `json:"close_reason,omitempty"`
 	CustomerUsername *string `json:"customer_username,omitempty"`
 	CustomerCcy *string `json:"customer_ccy,omitempty"`
 	InvalidAccounts *map[string]map[string]interface{} `json:"invalid_accounts,omitempty"`
-	WantBookies *string `json:"want_bookies,omitempty"`
 	Accounts *[]AccountItem `json:"accounts,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _BetSlipData BetSlipData
 
 // NewBetSlipData instantiates a new BetSlipData object
 // This constructor will assign default values to properties that have it defined,
@@ -373,6 +370,38 @@ func (o *BetSlipData) SetBookiesWithOffers(v []string) {
 	o.BookiesWithOffers = &v
 }
 
+// GetWantBookies returns the WantBookies field value if set, zero value otherwise.
+func (o *BetSlipData) GetWantBookies() []string {
+	if o == nil || o.WantBookies == nil {
+		var ret []string
+		return ret
+	}
+	return *o.WantBookies
+}
+
+// GetWantBookiesOk returns a tuple with the WantBookies field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BetSlipData) GetWantBookiesOk() (*[]string, bool) {
+	if o == nil || o.WantBookies == nil {
+		return nil, false
+	}
+	return o.WantBookies, true
+}
+
+// HasWantBookies returns a boolean if a field has been set.
+func (o *BetSlipData) HasWantBookies() bool {
+	if o != nil && o.WantBookies != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetWantBookies gets a reference to the given []string and assigns it to the WantBookies field.
+func (o *BetSlipData) SetWantBookies(v []string) {
+	o.WantBookies = &v
+}
+
 // GetEquivalentBetsBookies returns the EquivalentBetsBookies field value if set, zero value otherwise.
 func (o *BetSlipData) GetEquivalentBetsBookies() []string {
 	if o == nil || o.EquivalentBetsBookies == nil {
@@ -533,38 +562,6 @@ func (o *BetSlipData) SetInvalidAccounts(v map[string]map[string]interface{}) {
 	o.InvalidAccounts = &v
 }
 
-// GetWantBookies returns the WantBookies field value if set, zero value otherwise.
-func (o *BetSlipData) GetWantBookies() string {
-	if o == nil || o.WantBookies == nil {
-		var ret string
-		return ret
-	}
-	return *o.WantBookies
-}
-
-// GetWantBookiesOk returns a tuple with the WantBookies field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *BetSlipData) GetWantBookiesOk() (*string, bool) {
-	if o == nil || o.WantBookies == nil {
-		return nil, false
-	}
-	return o.WantBookies, true
-}
-
-// HasWantBookies returns a boolean if a field has been set.
-func (o *BetSlipData) HasWantBookies() bool {
-	if o != nil && o.WantBookies != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetWantBookies gets a reference to the given string and assigns it to the WantBookies field.
-func (o *BetSlipData) SetWantBookies(v string) {
-	o.WantBookies = &v
-}
-
 // GetAccounts returns the Accounts field value if set, zero value otherwise.
 func (o *BetSlipData) GetAccounts() []AccountItem {
 	if o == nil || o.Accounts == nil {
@@ -632,6 +629,9 @@ func (o BetSlipData) MarshalJSON() ([]byte, error) {
 	if o.BookiesWithOffers != nil {
 		toSerialize["bookies_with_offers"] = o.BookiesWithOffers
 	}
+	if o.WantBookies != nil {
+		toSerialize["want_bookies"] = o.WantBookies
+	}
 	if o.EquivalentBetsBookies != nil {
 		toSerialize["equivalent_bets_bookies"] = o.EquivalentBetsBookies
 	}
@@ -647,52 +647,10 @@ func (o BetSlipData) MarshalJSON() ([]byte, error) {
 	if o.InvalidAccounts != nil {
 		toSerialize["invalid_accounts"] = o.InvalidAccounts
 	}
-	if o.WantBookies != nil {
-		toSerialize["want_bookies"] = o.WantBookies
-	}
 	if o.Accounts != nil {
 		toSerialize["accounts"] = o.Accounts
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *BetSlipData) UnmarshalJSON(bytes []byte) (err error) {
-	varBetSlipData := _BetSlipData{}
-
-	if err = json.Unmarshal(bytes, &varBetSlipData); err == nil {
-		*o = BetSlipData(varBetSlipData)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "betslip_id")
-		delete(additionalProperties, "sport")
-		delete(additionalProperties, "event_id")
-		delete(additionalProperties, "bet_type")
-		delete(additionalProperties, "bet_type_description")
-		delete(additionalProperties, "bet_type_template")
-		delete(additionalProperties, "equivalent_bets")
-		delete(additionalProperties, "multiple_accounts")
-		delete(additionalProperties, "is_open")
-		delete(additionalProperties, "expiry_ts")
-		delete(additionalProperties, "bookies_with_offers")
-		delete(additionalProperties, "equivalent_bets_bookies")
-		delete(additionalProperties, "close_reason")
-		delete(additionalProperties, "customer_username")
-		delete(additionalProperties, "customer_ccy")
-		delete(additionalProperties, "invalid_accounts")
-		delete(additionalProperties, "want_bookies")
-		delete(additionalProperties, "accounts")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableBetSlipData struct {

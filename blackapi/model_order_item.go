@@ -41,10 +41,7 @@ type OrderItem struct {
 	ProfitLoss *[]interface{} `json:"profit_loss,omitempty"`
 	BetBarValues *BetBar `json:"bet_bar_values,omitempty"`
 	Bets *[]BetItem `json:"bets,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _OrderItem OrderItem
 
 // NewOrderItem instantiates a new OrderItem object
 // This constructor will assign default values to properties that have it defined,
@@ -884,52 +881,7 @@ func (o OrderItem) MarshalJSON() ([]byte, error) {
 	if o.Bets != nil {
 		toSerialize["bets"] = o.Bets
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *OrderItem) UnmarshalJSON(bytes []byte) (err error) {
-	varOrderItem := _OrderItem{}
-
-	if err = json.Unmarshal(bytes, &varOrderItem); err == nil {
-		*o = OrderItem(varOrderItem)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "order_id")
-		delete(additionalProperties, "order_type")
-		delete(additionalProperties, "bet_type")
-		delete(additionalProperties, "bet_type_description")
-		delete(additionalProperties, "bet_type_template")
-		delete(additionalProperties, "sport")
-		delete(additionalProperties, "placer")
-		delete(additionalProperties, "want_price")
-		delete(additionalProperties, "want_stake")
-		delete(additionalProperties, "ccy_rate")
-		delete(additionalProperties, "placement_time")
-		delete(additionalProperties, "expiry_time")
-		delete(additionalProperties, "closed")
-		delete(additionalProperties, "close_reason")
-		delete(additionalProperties, "status")
-		delete(additionalProperties, "user_data")
-		delete(additionalProperties, "take_starting_price")
-		delete(additionalProperties, "keep_open_ir")
-		delete(additionalProperties, "event_info")
-		delete(additionalProperties, "price")
-		delete(additionalProperties, "stake")
-		delete(additionalProperties, "profit_loss")
-		delete(additionalProperties, "bet_bar_values")
-		delete(additionalProperties, "bets")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableOrderItem struct {

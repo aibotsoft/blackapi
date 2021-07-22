@@ -18,10 +18,7 @@ import (
 type NotFoundError struct {
 	Status string `json:"status"`
 	Code string `json:"code"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _NotFoundError NotFoundError
 
 // NewNotFoundError instantiates a new NotFoundError object
 // This constructor will assign default values to properties that have it defined,
@@ -98,30 +95,7 @@ func (o NotFoundError) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["code"] = o.Code
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *NotFoundError) UnmarshalJSON(bytes []byte) (err error) {
-	varNotFoundError := _NotFoundError{}
-
-	if err = json.Unmarshal(bytes, &varNotFoundError); err == nil {
-		*o = NotFoundError(varNotFoundError)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "status")
-		delete(additionalProperties, "code")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableNotFoundError struct {

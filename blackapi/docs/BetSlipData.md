@@ -15,12 +15,12 @@ Name | Type | Description | Notes
 **IsOpen** | Pointer to **bool** |  | [optional] 
 **ExpiryTs** | **float64** |  | 
 **BookiesWithOffers** | Pointer to **[]string** |  | [optional] 
+**WantBookies** | Pointer to **[]string** |  | [optional] 
 **EquivalentBetsBookies** | Pointer to **[]string** |  | [optional] 
 **CloseReason** | Pointer to **string** |  | [optional] 
 **CustomerUsername** | Pointer to **string** |  | [optional] 
 **CustomerCcy** | Pointer to **string** |  | [optional] 
 **InvalidAccounts** | Pointer to **map[string]map[string]interface{}** |  | [optional] 
-**WantBookies** | Pointer to **string** |  | [optional] 
 **Accounts** | Pointer to [**[]AccountItem**](AccountItem.md) |  | [optional] 
 
 ## Methods
@@ -292,6 +292,31 @@ SetBookiesWithOffers sets BookiesWithOffers field to given value.
 
 HasBookiesWithOffers returns a boolean if a field has been set.
 
+### GetWantBookies
+
+`func (o *BetSlipData) GetWantBookies() []string`
+
+GetWantBookies returns the WantBookies field if non-nil, zero value otherwise.
+
+### GetWantBookiesOk
+
+`func (o *BetSlipData) GetWantBookiesOk() (*[]string, bool)`
+
+GetWantBookiesOk returns a tuple with the WantBookies field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWantBookies
+
+`func (o *BetSlipData) SetWantBookies(v []string)`
+
+SetWantBookies sets WantBookies field to given value.
+
+### HasWantBookies
+
+`func (o *BetSlipData) HasWantBookies() bool`
+
+HasWantBookies returns a boolean if a field has been set.
+
 ### GetEquivalentBetsBookies
 
 `func (o *BetSlipData) GetEquivalentBetsBookies() []string`
@@ -416,31 +441,6 @@ SetInvalidAccounts sets InvalidAccounts field to given value.
 `func (o *BetSlipData) HasInvalidAccounts() bool`
 
 HasInvalidAccounts returns a boolean if a field has been set.
-
-### GetWantBookies
-
-`func (o *BetSlipData) GetWantBookies() string`
-
-GetWantBookies returns the WantBookies field if non-nil, zero value otherwise.
-
-### GetWantBookiesOk
-
-`func (o *BetSlipData) GetWantBookiesOk() (*string, bool)`
-
-GetWantBookiesOk returns a tuple with the WantBookies field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetWantBookies
-
-`func (o *BetSlipData) SetWantBookies(v string)`
-
-SetWantBookies sets WantBookies field to given value.
-
-### HasWantBookies
-
-`func (o *BetSlipData) HasWantBookies() bool`
-
-HasWantBookies returns a boolean if a field has been set.
 
 ### GetAccounts
 

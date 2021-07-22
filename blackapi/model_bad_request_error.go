@@ -19,10 +19,7 @@ type BadRequestError struct {
 	Status string `json:"status"`
 	Code string `json:"code"`
 	Data ErrorData `json:"data"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _BadRequestError BadRequestError
 
 // NewBadRequestError instantiates a new BadRequestError object
 // This constructor will assign default values to properties that have it defined,
@@ -127,31 +124,7 @@ func (o BadRequestError) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["data"] = o.Data
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *BadRequestError) UnmarshalJSON(bytes []byte) (err error) {
-	varBadRequestError := _BadRequestError{}
-
-	if err = json.Unmarshal(bytes, &varBadRequestError); err == nil {
-		*o = BadRequestError(varBadRequestError)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "status")
-		delete(additionalProperties, "code")
-		delete(additionalProperties, "data")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableBadRequestError struct {

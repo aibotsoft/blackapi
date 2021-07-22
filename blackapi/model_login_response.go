@@ -18,10 +18,7 @@ import (
 type LoginResponse struct {
 	Status *string `json:"status,omitempty"`
 	Data *LoginData `json:"data,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _LoginResponse LoginResponse
 
 // NewLoginResponse instantiates a new LoginResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -112,30 +109,7 @@ func (o LoginResponse) MarshalJSON() ([]byte, error) {
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *LoginResponse) UnmarshalJSON(bytes []byte) (err error) {
-	varLoginResponse := _LoginResponse{}
-
-	if err = json.Unmarshal(bytes, &varLoginResponse); err == nil {
-		*o = LoginResponse(varLoginResponse)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "status")
-		delete(additionalProperties, "data")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableLoginResponse struct {

@@ -32,10 +32,7 @@ type BetItem struct {
 	WantStake *[]interface{} `json:"want_stake,omitempty"`
 	GotStake *[]interface{} `json:"got_stake,omitempty"`
 	ProfitLoss *[]interface{} `json:"profit_loss,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _BetItem BetItem
 
 // NewBetItem instantiates a new BetItem object
 // This constructor will assign default values to properties that have it defined,
@@ -616,44 +613,7 @@ func (o BetItem) MarshalJSON() ([]byte, error) {
 	if o.ProfitLoss != nil {
 		toSerialize["profit_loss"] = o.ProfitLoss
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *BetItem) UnmarshalJSON(bytes []byte) (err error) {
-	varBetItem := _BetItem{}
-
-	if err = json.Unmarshal(bytes, &varBetItem); err == nil {
-		*o = BetItem(varBetItem)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "bet_id")
-		delete(additionalProperties, "order_id")
-		delete(additionalProperties, "sport")
-		delete(additionalProperties, "event_id")
-		delete(additionalProperties, "bookie")
-		delete(additionalProperties, "username")
-		delete(additionalProperties, "bet_type")
-		delete(additionalProperties, "ccy_rate")
-		delete(additionalProperties, "reconciled")
-		delete(additionalProperties, "bookie_bet_id")
-		delete(additionalProperties, "status")
-		delete(additionalProperties, "want_price")
-		delete(additionalProperties, "got_price")
-		delete(additionalProperties, "want_stake")
-		delete(additionalProperties, "got_stake")
-		delete(additionalProperties, "profit_loss")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableBetItem struct {

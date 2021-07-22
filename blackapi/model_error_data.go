@@ -17,10 +17,7 @@ import (
 // ErrorData struct for ErrorData
 type ErrorData struct {
 	ValidationErrors *map[string][]string `json:"validation_errors,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _ErrorData ErrorData
 
 // NewErrorData instantiates a new ErrorData object
 // This constructor will assign default values to properties that have it defined,
@@ -76,29 +73,7 @@ func (o ErrorData) MarshalJSON() ([]byte, error) {
 	if o.ValidationErrors != nil {
 		toSerialize["validation_errors"] = o.ValidationErrors
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *ErrorData) UnmarshalJSON(bytes []byte) (err error) {
-	varErrorData := _ErrorData{}
-
-	if err = json.Unmarshal(bytes, &varErrorData); err == nil {
-		*o = ErrorData(varErrorData)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "validation_errors")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableErrorData struct {

@@ -27,10 +27,7 @@ type EventInfo struct {
 	CompetitionCountry string `json:"competition_country"`
 	StartTime time.Time `json:"start_time"`
 	Date string `json:"date"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _EventInfo EventInfo
 
 // NewEventInfo instantiates a new EventInfo object
 // This constructor will assign default values to properties that have it defined,
@@ -331,38 +328,7 @@ func (o EventInfo) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["date"] = o.Date
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *EventInfo) UnmarshalJSON(bytes []byte) (err error) {
-	varEventInfo := _EventInfo{}
-
-	if err = json.Unmarshal(bytes, &varEventInfo); err == nil {
-		*o = EventInfo(varEventInfo)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "event_id")
-		delete(additionalProperties, "home_id")
-		delete(additionalProperties, "home_team")
-		delete(additionalProperties, "away_id")
-		delete(additionalProperties, "away_team")
-		delete(additionalProperties, "competition_id")
-		delete(additionalProperties, "competition_name")
-		delete(additionalProperties, "competition_country")
-		delete(additionalProperties, "start_time")
-		delete(additionalProperties, "date")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableEventInfo struct {

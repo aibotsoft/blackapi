@@ -18,10 +18,7 @@ import (
 type GetEventsResponse struct {
 	Status *string `json:"status,omitempty"`
 	Data *map[string]League `json:"data,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _GetEventsResponse GetEventsResponse
 
 // NewGetEventsResponse instantiates a new GetEventsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -112,30 +109,7 @@ func (o GetEventsResponse) MarshalJSON() ([]byte, error) {
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *GetEventsResponse) UnmarshalJSON(bytes []byte) (err error) {
-	varGetEventsResponse := _GetEventsResponse{}
-
-	if err = json.Unmarshal(bytes, &varGetEventsResponse); err == nil {
-		*o = GetEventsResponse(varGetEventsResponse)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "status")
-		delete(additionalProperties, "data")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableGetEventsResponse struct {

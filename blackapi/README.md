@@ -87,8 +87,8 @@ Class | Method | HTTP request | Description
 *BetApi* | [**RefreshBetSlip**](docs/BetApi.md#refreshbetslip) | **Post** /v1/betslips/{betslip_id}/refresh/ | 
 *MarketApi* | [**GetEvents**](docs/MarketApi.md#getevents) | **Post** /s/prices/eventdata1/ | 
 *UserApi* | [**Balance**](docs/UserApi.md#balance) | **Get** /v1/customers/{username}/accounting_info/ | 
-*UserApi* | [**CheckLogin**](docs/UserApi.md#checklogin) | **Get** /s/weblogin/{session}/ | 
-*UserApi* | [**Login**](docs/UserApi.md#login) | **Post** /s/weblogin/ | 
+*UserApi* | [**CheckLogin**](docs/UserApi.md#checklogin) | **Get** /web/sessions/{session}/ | 
+*UserApi* | [**Login**](docs/UserApi.md#login) | **Post** /web/sessions/ | 
 
 
 ## Documentation For Models
@@ -122,6 +122,8 @@ Class | Method | HTTP request | Description
  - [PlaceBetRequest](docs/PlaceBetRequest.md)
  - [PlaceBetResponse](docs/PlaceBetResponse.md)
  - [RefreshBetSlipResponse](docs/RefreshBetSlipResponse.md)
+ - [UnauthorizedError](docs/UnauthorizedError.md)
+ - [UnauthorizedErrorData](docs/UnauthorizedErrorData.md)
  - [WebsocketResponse](docs/WebsocketResponse.md)
 
 

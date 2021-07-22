@@ -18,10 +18,7 @@ import (
 type BalanceResponse struct {
 	Status string `json:"status"`
 	Data []BalanceItem `json:"data"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _BalanceResponse BalanceResponse
 
 // NewBalanceResponse instantiates a new BalanceResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -98,30 +95,7 @@ func (o BalanceResponse) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["data"] = o.Data
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *BalanceResponse) UnmarshalJSON(bytes []byte) (err error) {
-	varBalanceResponse := _BalanceResponse{}
-
-	if err = json.Unmarshal(bytes, &varBalanceResponse); err == nil {
-		*o = BalanceResponse(varBalanceResponse)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "status")
-		delete(additionalProperties, "data")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableBalanceResponse struct {

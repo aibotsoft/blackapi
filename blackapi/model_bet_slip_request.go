@@ -21,10 +21,7 @@ type BetSlipRequest struct {
 	BetType string `json:"bet_type"`
 	EquivalentBets bool `json:"equivalent_bets"`
 	MultipleAccounts bool `json:"multiple_accounts"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _BetSlipRequest BetSlipRequest
 
 // NewBetSlipRequest instantiates a new BetSlipRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -185,33 +182,7 @@ func (o BetSlipRequest) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["multiple_accounts"] = o.MultipleAccounts
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *BetSlipRequest) UnmarshalJSON(bytes []byte) (err error) {
-	varBetSlipRequest := _BetSlipRequest{}
-
-	if err = json.Unmarshal(bytes, &varBetSlipRequest); err == nil {
-		*o = BetSlipRequest(varBetSlipRequest)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "sport")
-		delete(additionalProperties, "event_id")
-		delete(additionalProperties, "bet_type")
-		delete(additionalProperties, "equivalent_bets")
-		delete(additionalProperties, "multiple_accounts")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableBetSlipRequest struct {

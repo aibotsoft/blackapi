@@ -21,10 +21,7 @@ type League struct {
 	Name *string `json:"name,omitempty"`
 	Rank *int64 `json:"rank,omitempty"`
 	Events *map[string]Event `json:"events,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _League League
 
 // NewLeague instantiates a new League object
 // This constructor will assign default values to properties that have it defined,
@@ -220,33 +217,7 @@ func (o League) MarshalJSON() ([]byte, error) {
 	if o.Events != nil {
 		toSerialize["events"] = o.Events
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *League) UnmarshalJSON(bytes []byte) (err error) {
-	varLeague := _League{}
-
-	if err = json.Unmarshal(bytes, &varLeague); err == nil {
-		*o = League(varLeague)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "comp_bookie")
-		delete(additionalProperties, "country")
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "rank")
-		delete(additionalProperties, "events")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableLeague struct {

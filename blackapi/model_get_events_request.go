@@ -20,10 +20,7 @@ type GetEventsRequest struct {
 	AllEvents bool `json:"all_events"`
 	AllHcaps *bool `json:"all_hcaps,omitempty"`
 	EventIds *[][]string `json:"event_ids,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _GetEventsRequest GetEventsRequest
 
 // NewGetEventsRequest instantiates a new GetEventsRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -170,32 +167,7 @@ func (o GetEventsRequest) MarshalJSON() ([]byte, error) {
 	if o.EventIds != nil {
 		toSerialize["event_ids"] = o.EventIds
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *GetEventsRequest) UnmarshalJSON(bytes []byte) (err error) {
-	varGetEventsRequest := _GetEventsRequest{}
-
-	if err = json.Unmarshal(bytes, &varGetEventsRequest); err == nil {
-		*o = GetEventsRequest(varGetEventsRequest)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "include_prices")
-		delete(additionalProperties, "all_events")
-		delete(additionalProperties, "all_hcaps")
-		delete(additionalProperties, "event_ids")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableGetEventsRequest struct {

@@ -22,10 +22,7 @@ type Event struct {
 	IrStatus *string `json:"ir_status,omitempty"`
 	Sports *[]string `json:"sports,omitempty"`
 	StartTime *time.Time `json:"start_time,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _Event Event
 
 // NewEvent instantiates a new Event object
 // This constructor will assign default values to properties that have it defined,
@@ -221,33 +218,7 @@ func (o Event) MarshalJSON() ([]byte, error) {
 	if o.StartTime != nil {
 		toSerialize["start_time"] = o.StartTime
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *Event) UnmarshalJSON(bytes []byte) (err error) {
-	varEvent := _Event{}
-
-	if err = json.Unmarshal(bytes, &varEvent); err == nil {
-		*o = Event(varEvent)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "away")
-		delete(additionalProperties, "home")
-		delete(additionalProperties, "ir_status")
-		delete(additionalProperties, "sports")
-		delete(additionalProperties, "start_time")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableEvent struct {

@@ -150,13 +150,8 @@ type ApiCheckLoginRequest struct {
 	ctx _context.Context
 	ApiService *UserApiService
 	session string
-	full *bool
 }
 
-func (r ApiCheckLoginRequest) Full(full bool) ApiCheckLoginRequest {
-	r.full = &full
-	return r
-}
 
 func (r ApiCheckLoginRequest) Execute() (LoginResponse, *_nethttp.Response, error) {
 	return r.ApiService.CheckLoginExecute(r)
@@ -195,16 +190,13 @@ func (a *UserApiService) CheckLoginExecute(r ApiCheckLoginRequest) (LoginRespons
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/s/weblogin/{session}/"
+	localVarPath := localBasePath + "/web/sessions/{session}/"
 	localVarPath = strings.Replace(localVarPath, "{"+"session"+"}", _neturl.PathEscape(parameterToString(r.session, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.full != nil {
-		localVarQueryParams.Add("full", parameterToString(*r.full, ""))
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -257,6 +249,16 @@ func (a *UserApiService) CheckLoginExecute(r ApiCheckLoginRequest) (LoginRespons
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v UnauthorizedError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v NotFoundError
@@ -328,7 +330,7 @@ func (a *UserApiService) LoginExecute(r ApiLoginRequest) (LoginResponse, *_netht
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/s/weblogin/"
+	localVarPath := localBasePath + "/web/sessions/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

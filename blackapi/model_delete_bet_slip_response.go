@@ -18,10 +18,7 @@ import (
 type DeleteBetSlipResponse struct {
 	Data *string `json:"data,omitempty"`
 	Status string `json:"status"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _DeleteBetSlipResponse DeleteBetSlipResponse
 
 // NewDeleteBetSlipResponse instantiates a new DeleteBetSlipResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -105,30 +102,7 @@ func (o DeleteBetSlipResponse) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["status"] = o.Status
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *DeleteBetSlipResponse) UnmarshalJSON(bytes []byte) (err error) {
-	varDeleteBetSlipResponse := _DeleteBetSlipResponse{}
-
-	if err = json.Unmarshal(bytes, &varDeleteBetSlipResponse); err == nil {
-		*o = DeleteBetSlipResponse(varDeleteBetSlipResponse)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "data")
-		delete(additionalProperties, "status")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableDeleteBetSlipResponse struct {

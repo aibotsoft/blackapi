@@ -230,7 +230,7 @@ paths:
           description: Ok
       tags:
       - Market
-  /s/weblogin/{session}/:
+  /web/sessions/{session}/:
     get:
       operationId: CheckLogin
       parameters:
@@ -241,13 +241,6 @@ paths:
         schema:
           type: string
         style: simple
-      - explode: true
-        in: query
-        name: full
-        required: false
-        schema:
-          type: boolean
-        style: form
       responses:
         "200":
           content:
@@ -255,6 +248,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/LoginResponse'
           description: Ok
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+          description: Unauthorized
         "404":
           content:
             application/json:
@@ -263,7 +262,7 @@ paths:
           description: NotFoundError
       tags:
       - User
-  /s/weblogin/:
+  /web/sessions/:
     post:
       operationId: Login
       requestBody:
@@ -287,21 +286,16 @@ components:
       example:
         username: wqerqw
         password: qwerqwer
-        full: true
         lang: en
       properties:
         username:
           type: string
         password:
           type: string
-        full:
-          default: true
-          type: boolean
         lang:
           default: en
           type: string
       required:
-      - full
       - lang
       - password
       - username
@@ -3548,6 +3542,10 @@ components:
           items:
             type: string
           type: array
+        want_bookies:
+          items:
+            type: string
+          type: array
         equivalent_bets_bookies:
           items:
             type: string
@@ -3566,8 +3564,6 @@ components:
               _0f809ddb_: account_backoff
               _7e06df45_: account_backoff
           type: object
-        want_bookies:
-          type: string
         accounts:
           items:
             $ref: '#/components/schemas/AccountItem'
@@ -4140,6 +4136,23 @@ components:
             description: any
           type: array
       type: object
+    UnauthorizedError:
+      example:
+        status: error
+        code: auth_error
+        data:
+          detail: Authentication credentials were not provided.
+      properties:
+        status:
+          type: string
+        code:
+          type: string
+        data:
+          $ref: '#/components/schemas/UnauthorizedError_data'
+      required:
+      - code
+      - status
+      type: object
     NotFoundError:
       example:
         status: error
@@ -4169,6 +4182,11 @@ components:
     BetItem_status:
       properties:
         code:
+          type: string
+      type: object
+    UnauthorizedError_data:
+      properties:
+        detail:
           type: string
       type: object
   securitySchemes:

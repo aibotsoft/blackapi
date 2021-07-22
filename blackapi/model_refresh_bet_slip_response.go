@@ -17,10 +17,7 @@ import (
 // RefreshBetSlipResponse struct for RefreshBetSlipResponse
 type RefreshBetSlipResponse struct {
 	Status string `json:"status"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _RefreshBetSlipResponse RefreshBetSlipResponse
 
 // NewRefreshBetSlipResponse instantiates a new RefreshBetSlipResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -69,29 +66,7 @@ func (o RefreshBetSlipResponse) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["status"] = o.Status
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *RefreshBetSlipResponse) UnmarshalJSON(bytes []byte) (err error) {
-	varRefreshBetSlipResponse := _RefreshBetSlipResponse{}
-
-	if err = json.Unmarshal(bytes, &varRefreshBetSlipResponse); err == nil {
-		*o = RefreshBetSlipResponse(varRefreshBetSlipResponse)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "status")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableRefreshBetSlipResponse struct {

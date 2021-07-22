@@ -20,10 +20,7 @@ type BetBar struct {
 	Inprogress []interface{} `json:"inprogress"`
 	Danger []interface{} `json:"danger"`
 	Unplaced []interface{} `json:"unplaced"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _BetBar BetBar
 
 // NewBetBar instantiates a new BetBar object
 // This constructor will assign default values to properties that have it defined,
@@ -156,32 +153,7 @@ func (o BetBar) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["unplaced"] = o.Unplaced
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *BetBar) UnmarshalJSON(bytes []byte) (err error) {
-	varBetBar := _BetBar{}
-
-	if err = json.Unmarshal(bytes, &varBetBar); err == nil {
-		*o = BetBar(varBetBar)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "success")
-		delete(additionalProperties, "inprogress")
-		delete(additionalProperties, "danger")
-		delete(additionalProperties, "unplaced")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableBetBar struct {

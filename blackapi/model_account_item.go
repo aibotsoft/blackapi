@@ -19,10 +19,7 @@ type AccountItem struct {
 	Bookie string `json:"bookie"`
 	Username string `json:"username"`
 	BetType string `json:"bet_type"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _AccountItem AccountItem
 
 // NewAccountItem instantiates a new AccountItem object
 // This constructor will assign default values to properties that have it defined,
@@ -127,31 +124,7 @@ func (o AccountItem) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["bet_type"] = o.BetType
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *AccountItem) UnmarshalJSON(bytes []byte) (err error) {
-	varAccountItem := _AccountItem{}
-
-	if err = json.Unmarshal(bytes, &varAccountItem); err == nil {
-		*o = AccountItem(varAccountItem)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "bookie")
-		delete(additionalProperties, "username")
-		delete(additionalProperties, "bet_type")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableAccountItem struct {
